@@ -1,8 +1,5 @@
-﻿using BenchmarkDotNet.Attributes;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
+using BenchmarkDotNet.Attributes;
 
 namespace Benchmarking
 {
@@ -14,7 +11,7 @@ namespace Benchmarking
         [GlobalSetup]
         public void Setup()
         {
-            path = "D:/3.semester/SwQuality/hw2/XmlRepairer/PV260-hw2-XmlRepairer/XmlRepairer/test.xml";
+            path = "../../../../../../../../XmlRepairer/test.xml";
             fileContent = File.ReadAllText(path);
         }
 
@@ -25,6 +22,5 @@ namespace Benchmarking
             //XmlRepairer.XmlRepairer.RemoveInvalidXmlChars2(fileContent);
             //XmlRepairer.XmlRepairer.RemoveInvalidXmlChars3(fileContent);
         }
-
     }
 }

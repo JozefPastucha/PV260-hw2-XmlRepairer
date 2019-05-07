@@ -1,7 +1,6 @@
-using NUnit.Framework;
 using System.IO;
 using System.Xml;
-using XmlRepairer;
+using NUnit.Framework;
 
 namespace Tests
 {
@@ -9,10 +8,11 @@ namespace Tests
     {
         private string fileContent;
         private string path;
+
         [SetUp]
         public void Setup()
         {
-            path = "D:/3.semester/SwQuality/hw2/XmlRepairer/PV260-hw2-XmlRepairer/XmlRepairer/test.xml";
+            path = "../../../../XmlRepairer/test.xml";
             fileContent = File.ReadAllText(path);
         }
 
