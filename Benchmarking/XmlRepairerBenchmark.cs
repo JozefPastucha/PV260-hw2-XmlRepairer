@@ -3,24 +3,54 @@ using BenchmarkDotNet.Attributes;
 
 namespace Benchmarking
 {
-    public class XMLRepairerBenchmark
+    public class XmlRepairerBenchmark
     {
-        public string fileContent { get; set; }
-        public string path { get; set; }
+        private const int IterationCount = 100;
+        private string _fileContent;
+        private string _path;
 
         [GlobalSetup]
         public void Setup()
         {
-            path = "../../../../../../../../XmlRepairer/test.xml";
-            fileContent = File.ReadAllText(path);
+            _path = "../../../../../../../../XmlRepairer/test.xml";
+            _fileContent = File.ReadAllText(_path);
         }
 
         [Benchmark]
-        public void RemoveInvalidXmlCharsBenchmark()
+        public void RemoveInvalidXmlCharsBenchmarkLinq()
         {
-            XmlRepairer.XmlRepairer.RemoveInvalidXmlChars(fileContent);
-            //XmlRepairer.XmlRepairer.RemoveInvalidXmlChars2(fileContent);
-            //XmlRepairer.XmlRepairer.RemoveInvalidXmlChars3(fileContent);
+            for (var i = 0; i < IterationCount; i++)
+            {
+                XmlRepairer.XmlRepairer.RemoveInvalidXmlCharsLinq(_fileContent);
+            }
+        }
+
+        [Benchmark]
+        public void RemoveInvalidXmlCharsBenchmarkForEach()
+        {
+            for (var i = 0; i < IterationCount; i++)
+            {
+                XmlRepairer.XmlRepairer.RemoveInvalidXmlCharsForEach(_fileContent);
+            }
+        }
+
+        [Benchmark]
+        public void RemoveInvalidXmlCharsBenchmarkFor()
+        {
+            for (var i = 0; i < IterationCount; i++)
+            {
+                XmlRepairer.XmlRepairer.RemoveInvalidXmlCharsFor(_fileContent);
+            }
+        }
+
+
+        [Benchmark]
+        public void RemoveInvalidXmlCharsBenchmarkForEachAdvanced()
+        {
+            for (var i = 0; i < IterationCount; i++)
+            {
+                XmlRepairer.XmlRepairer.RemoveInvalidXmlCharsForAdvanced(_fileContent);
+            }
         }
     }
 }

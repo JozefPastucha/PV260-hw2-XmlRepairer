@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using System;
 
 namespace Benchmarking
 {
@@ -7,7 +6,7 @@ namespace Benchmarking
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<XMLRepairerBenchmark>();
+            BenchmarkRunner.Run<XmlRepairerBenchmark>();
         }
     }
 }
