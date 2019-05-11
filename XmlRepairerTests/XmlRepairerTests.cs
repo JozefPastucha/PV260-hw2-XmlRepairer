@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Xml;
 using NUnit.Framework;
 
@@ -6,11 +6,11 @@ namespace XmlRepairerTests
 {
     public class Tests
     {
-        private readonly string _fullInvalidString1 = "";
-        private readonly string _fullInvalidString1Result = "";
+        private string _allCharsInvalid;
+        private readonly string _allCharsInvalidResult = "";
 
-        private readonly string _invalidString2 = "testtesttesttest";
-        private readonly string _invalidString2Result = "testtesttesttest";
+        private string _someCharsInvalid;
+        private readonly string _someCharsInvalidResult = "testtesttesttest";
 
         private readonly string _validString3 = "valid string";
         private string _fileContent;
@@ -21,6 +21,9 @@ namespace XmlRepairerTests
         {
             _path = "../../../../XmlRepairer/test.xml";
             _fileContent = File.ReadAllText(_path);
+            _allCharsInvalid = File.ReadAllText("../../../allCharsInvalid.txt");
+            _someCharsInvalid = File.ReadAllText("../../../someCharsInvalid.txt");
+
         }
 
         [Test]
@@ -63,11 +66,11 @@ namespace XmlRepairerTests
         }
 
         [Test]
-        public void ValidXmlAfterRepair_ForAdvanced_FullInvalidString1()
+        public void ValidXmlAfterRepair_ForAdvanced_allCharsInvalid()
         {
             _fileContent =
-                XmlRepairer.XmlRepairer.RemoveInvalidXmlCharsForAdvanced(_fullInvalidString1);
-            Assert.AreEqual(_fileContent, _fullInvalidString1Result);
+                XmlRepairer.XmlRepairer.RemoveInvalidXmlCharsForAdvanced(_allCharsInvalid);
+            Assert.AreEqual(_fileContent, _allCharsInvalidResult);
         }
 
         [Test]
@@ -79,11 +82,11 @@ namespace XmlRepairerTests
         }
 
         [Test]
-        public void ValidXmlAfterRepair_ForAdvanced_InvalidString2()
+        public void ValidXmlAfterRepair_ForAdvanced_someCharsInvalid()
         {
             _fileContent =
-                XmlRepairer.XmlRepairer.RemoveInvalidXmlCharsForAdvanced(_invalidString2);
-            Assert.AreEqual(_fileContent, _invalidString2Result);
+                XmlRepairer.XmlRepairer.RemoveInvalidXmlCharsForAdvanced(_someCharsInvalid);
+            Assert.AreEqual(_fileContent, _someCharsInvalidResult);
         }
     }
 }
